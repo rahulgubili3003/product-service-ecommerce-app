@@ -1,6 +1,7 @@
 package com.online.store.application.util.mappers
 
 import com.online.store.application.dto.request.AddProductsRequest
+import com.online.store.application.dto.response.FetchProducts
 import com.online.store.application.entity.ProductInventory
 import com.online.store.application.entity.Products
 
@@ -12,8 +13,17 @@ class DtoToEntityMapper {
                 description = addProductsRequest.description,
                 category = addProductsRequest.category,
                 inventory = ProductInventory(
-                    itemsNumber = 20
+                    itemsNumber = addProductsRequest.stockQty
                 )
+            )
+        }
+
+        fun mapEntityToDto(products: Products): FetchProducts {
+            return FetchProducts(
+                productName = products.productName,
+                description = products.description,
+                category = products.category,
+                qty = products.inventory.itemsNumber
             )
         }
     }

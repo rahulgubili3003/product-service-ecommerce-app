@@ -12,6 +12,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import jakarta.validation.constraints.NotBlank
 import lombok.AllArgsConstructor
 import lombok.Getter
@@ -20,14 +21,15 @@ import lombok.Setter
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
-import kotlin.reflect.jvm.internal.impl.descriptors.deserialization.PlatformDependentDeclarationFilter.All
 
-@Entity
-@Table(name = "products")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Entity
+@Table(name = "products",
+    uniqueConstraints = [UniqueConstraint(columnNames = ["product_name", "product_desc"])]
+)
 data class Products(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

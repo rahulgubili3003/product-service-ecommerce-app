@@ -27,4 +27,10 @@ class ProductsController(private val productsService: ProductsService) {
         val items = productsService.fetchInventory(productId)
         return ResponseEntity.ok(OkResponse(data = items))
     }
+
+    @GetMapping("/getInventory/all")
+    fun getAllInventory(): ResponseEntity<OkResponse> {
+        val products = productsService.getAllInventory()
+        return ResponseEntity.ok(OkResponse(data = products))
+    }
 }

@@ -1,6 +1,7 @@
 package com.online.store.application.service
 
 import com.online.store.application.dto.request.AddProductsRequest
+import com.online.store.application.dto.response.FetchProducts
 import com.online.store.application.entity.Products
 import com.online.store.application.repository.ProductsRepository
 import com.online.store.application.util.mappers.DtoToEntityMapper
@@ -21,5 +22,12 @@ class ProductsService(private val productsRepository: ProductsRepository) {
             // If present, return the number of items in the inventory
             product.inventory.itemsNumber
         }.orElseThrow { RuntimeException("Product Not Found") }
+    }
+
+    fun getAllInventory(): List<FetchProducts> {
+        val products = productsRepository.findAll()
+        return products.map { product ->
+            DtoToEntityMapper.mapEntityToDto(product)
+        }
     }
 }
