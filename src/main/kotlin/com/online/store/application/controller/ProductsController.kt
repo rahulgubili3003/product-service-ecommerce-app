@@ -1,7 +1,6 @@
 package com.online.store.application.controller
 
 import com.online.store.application.dto.request.AddProductsRequest
-import com.online.store.application.dto.request.FetchInventory
 import com.online.store.application.dto.response.OkResponse
 import com.online.store.application.service.ProductsService
 import jakarta.validation.Valid
