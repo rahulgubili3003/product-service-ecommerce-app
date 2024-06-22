@@ -33,8 +33,8 @@ class ProductsService(private val productsRepository: ProductsRepository) {
     }
 
     fun getInventoryList(productsList: List<String>): List<InventoryDetailsResponse> {
-        val productsEntityList = productsRepository.findAllByProductId(productsList)
-        val filtered = productsEntityList.stream().map { product -> InventoryDetailsResponse(product.productId, product.inventory.stockQty > 0)}.toList()
+        val productsEntityList = productsRepository.findByProductIdIn(productsList)
+        val filtered = productsEntityList.stream().map { product -> InventoryDetailsResponse(product.productId, product.inventory.stockQty )}.toList()
         return filtered
     }
 }
