@@ -4,11 +4,13 @@ import com.online.store.application.dto.request.AddProductsRequest
 import com.online.store.application.dto.response.FetchProducts
 import com.online.store.application.entity.ProductInventory
 import com.online.store.application.entity.Products
+import com.online.store.application.util.random.RandomUtil
 
 class DtoToEntityMapper {
     companion object {
         fun mapDtoToEntity(addProductsRequest: AddProductsRequest): Products {
             return Products(
+                productId = RandomUtil.generateProductId(),
                 productName = addProductsRequest.productName,
                 description = addProductsRequest.description,
                 category = addProductsRequest.category,
