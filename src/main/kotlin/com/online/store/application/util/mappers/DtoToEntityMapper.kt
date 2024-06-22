@@ -13,17 +13,18 @@ class DtoToEntityMapper {
                 description = addProductsRequest.description,
                 category = addProductsRequest.category,
                 inventory = ProductInventory(
-                    itemsNumber = addProductsRequest.stockQty
+                    stockQty = addProductsRequest.stockQty
                 )
             )
         }
 
         fun mapEntityToDto(products: Products): FetchProducts {
+            println("products map")
             return FetchProducts(
                 productName = products.productName,
                 description = products.description,
                 category = products.category,
-                qty = products.inventory.itemsNumber
+                qty = products.inventory.stockQty
             )
         }
     }

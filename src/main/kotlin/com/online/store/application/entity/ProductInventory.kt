@@ -27,7 +27,7 @@ data class ProductInventory(
     val id: Long? = null,
 
     @Column(name = "no_of_items", nullable = false)
-    val itemsNumber: Int,
+    val stockQty: Int,
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

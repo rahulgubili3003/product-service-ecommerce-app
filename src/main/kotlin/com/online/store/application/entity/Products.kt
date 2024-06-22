@@ -27,14 +27,15 @@ import java.util.*
 @Getter
 @Setter
 @Entity
-@Table(name = "products",
-    uniqueConstraints = [UniqueConstraint(columnNames = ["product_name", "product_desc"])]
-)
+@Table(name = "products")
 data class Products(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, updatable = false, nullable = false)
     val id: Long? = null,
+
+    @Column(name = "product_id", unique = true, nullable = false, updatable = false)
+    val productId: String,
 
     @Column(name = "product_name", nullable = false)
     @NotBlank(message = "Product Name is Required")

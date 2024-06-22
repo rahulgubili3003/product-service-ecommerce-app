@@ -1,6 +1,7 @@
 package com.online.store.application.controller
 
 import com.online.store.application.dto.request.AddProductsRequest
+import com.online.store.application.dto.request.GetInventoryDetails
 import com.online.store.application.dto.response.OkResponse
 import com.online.store.application.service.ProductsService
 import jakarta.validation.Valid
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -33,4 +35,11 @@ class ProductsController(private val productsService: ProductsService) {
         val products = productsService.getAllInventory()
         return ResponseEntity.ok(OkResponse(data = products))
     }
+
+    @GetMapping("/getInventory")
+    fun getInventoryList(@RequestParam productsList: List<String>): ResponseEntity<OkResponse> {
+        productsService.getInventoryList(productsList)
+        return ResponseEntity.ok(OkResponse(data = null))
+    }
+
 }
