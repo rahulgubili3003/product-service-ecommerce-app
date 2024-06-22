@@ -2,6 +2,7 @@ package com.online.store.application.controller
 
 import com.online.store.application.dto.request.AddProductsRequest
 import com.online.store.application.dto.request.GetInventoryDetails
+import com.online.store.application.dto.response.InventoryDetailsResponse
 import com.online.store.application.dto.response.OkResponse
 import com.online.store.application.service.ProductsService
 import jakarta.validation.Valid
@@ -37,9 +38,8 @@ class ProductsController(private val productsService: ProductsService) {
     }
 
     @GetMapping("/getInventory")
-    fun getInventoryList(@RequestParam productsList: List<String>): ResponseEntity<OkResponse> {
-        productsService.getInventoryList(productsList)
-        return ResponseEntity.ok(OkResponse(data = null))
+    fun getInventoryList(@RequestParam productsList: List<String>): List<InventoryDetailsResponse> {
+        return productsService.getInventoryList(productsList)
     }
 
 }
